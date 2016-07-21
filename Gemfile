@@ -21,7 +21,7 @@ gem 'omniauth-facebook'
 
 # bootstrap
 gem 'bootstrap-sass'
-gem 'bootstrap_form'
+# gem 'bootstrap_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
