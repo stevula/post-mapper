@@ -16,9 +16,12 @@ ActiveRecord::Schema.define(version: 20160721205714) do
   enable_extension "plpgsql"
 
   create_table "users", force: :cascade do |t|
+    t.string   "name"
     t.integer  "facebook_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "facebook_token"
+    t.datetime "facebook_token_expires_at"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
     t.index ["facebook_id"], name: "index_users_on_facebook_id", using: :btree
   end
 
