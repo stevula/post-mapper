@@ -14,7 +14,9 @@ class Facebook
     end
 
     def get_posts(user)
-      query = {query: {access_token: user.facebook_token, fields: 'place'}}
+      query = {query: {access_token: user.facebook_token, 
+        fields: 'place,from,message,link'}
+      }
       self.get("/me/posts", query)
     end
   end

@@ -3,15 +3,21 @@ class FriendsController < ApplicationController
     user = current_user
     if user
       @latitude, @longitude = user.update_location
-      post_data = Facebook.get_posts(user)["data"]
-      @post_locations = post_data.reduce([]) do |post_locations, post| 
+      posts = Facebook.get_posts(user)
+      post_data = posts["data"]
+      @posts_with_location = post_data.reduce({data: []}) do |posts, post| 
         if post["place"]
           location = post["place"]["location"]
           coords = [location["latitude"], location["longitude"]]
-          post_locations << coords
+          author = post["from"]["name"]
+          message = post["message"]
+          post_hash = {coords: coords, author: author, message: message}
+          posts[:data] << post_hash
         end
-        post_locations
+        posts
       end
+
+      p @posts_with_location
     end
   end
 end

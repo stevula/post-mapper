@@ -13,17 +13,17 @@
         zoom: 10
       });
 
-      var content = '<div id="info-window">' +
-        'INFOWINDOW' +
-        '</div>';
+      var posts = <%= raw @posts_with_location.to_json %>['data'];
 
-      var infoWindow = new google.maps.InfoWindow({content: content});
+      posts.forEach(function(post) {
+        var infoContent = '<div id="info-window">' +
+          post.author +
+          post.message +
+          '</div>';
+        var infoWindow = new google.maps.InfoWindow({content: infoContent});
 
-      var coords = <%= @post_locations %>;
-
-      coords.forEach(function(coord) {
-        var lat = coord[0],
-            lng = coord[1];
+        var lat = post.coords[0],
+            lng = post.coords[1];
         var marker = new google.maps.Marker({
           position: {lat: lat, lng: lng},
           map: map
