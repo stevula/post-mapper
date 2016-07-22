@@ -18,6 +18,7 @@
       posts.forEach(function(post) {
         var infoContent = '<div id="info-window">' +
           post.author +
+          ' ' +
           post.message +
           '</div>';
         var infoWindow = new google.maps.InfoWindow({content: infoContent});

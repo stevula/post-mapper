@@ -2,6 +2,8 @@ class FriendsController < ApplicationController
   def index
     user = current_user
     if user
+      pp friends = Facebook.get_friends(user)
+      p friend = friends[0]
       @latitude, @longitude = user.update_location
       posts = Facebook.get_posts(user)
       post_data = posts["data"]
@@ -17,7 +19,7 @@ class FriendsController < ApplicationController
         posts
       end
 
-      p @posts_with_location
+      @posts_with_location
     end
   end
 end
