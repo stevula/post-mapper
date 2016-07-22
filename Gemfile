@@ -31,13 +31,15 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# oauth
+# api
+gem 'httparty'
 gem 'omniauth-facebook'
 
 # bootstrap
 gem 'bootstrap-sass'
 
-gem 'httparty'
+# mapping
+gem 'geokit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -12,7 +12,6 @@ class SessionsController < ApplicationController
       flash[:warning] = "There was an error while trying to authenticate your 
         Facebook credentials"
     end
-    pp request.env['omniauth.auth']
     redirect_to root_path
   end
 
