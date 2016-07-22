@@ -1,0 +1,11 @@
+<div class="jumbotron">
+<% if current_user %>
+  <h1>Your posts mapped:</h1>
+  <img src="https://placehold.it/600x600">
+<% else %>
+    <h1>Welcome!</h1>
+    <p>Sign in through Facebook to get started.</p>
+    <%= link_to 'Facebook Login', '/auth/facebook' %>
+<% end %>
+</div>
+
