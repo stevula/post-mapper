@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160721205714) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.integer  "facebook_id"
+    t.bigint   "facebook_id"
     t.string   "facebook_token"
     t.datetime "facebook_token_expires_at"
     t.datetime "created_at",                null: false
