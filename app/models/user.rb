@@ -10,4 +10,13 @@ class User < ApplicationRecord
       user
     end
   end
+
+  def update_location
+    location_data = Facebook.get_location(self)
+    location = location_data['location']['name']
+    geodata = Geokit::Geocoders::MultiGeocoder.geocode(location)
+    self.attributes = {latitude: @latitude, longitude: @longitude}
+    self.save!
+    return geodata.lat, geodata.lng
+  end
 end
