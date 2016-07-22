@@ -14,27 +14,20 @@
   <!-- TODO -->
   <!-- <meta property="og:image"              content="" /> -->
 
-  <!-- facebook sdk -->
-  <script>
-    window.fbAsyncInit = function() {
-      FB.init({
-        appId      : '616729855165047',
-        xfbml      : true,
-        version    : 'v2.7'
-      });
-    };
 
-    (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "//connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
- </script>
 </head>
 
 <body>
+   <!-- facebook sdk -->
+   <div id="fb-root"></div>
+   <script>(function(d, s, id) {
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) return;
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=616729855165047";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));</script>
+
   <nav class="navbar navbar-inverse">
     <div class="container">
       <div class="navbar-header">
@@ -66,14 +59,8 @@
   </div>
 
   <footer class="footer">
-    <!-- facebook like button -->
-    <div
-      class="fb-like"
-      data-share="true"
-      data-width="450"
-      data-show-faces="true">
-    </div>
+    <!-- facebook like and share buttons -->
+    <div class="fb-like" data-href="http://post-mapper.herokuapp.com" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
   </footer>
-
 </body>
 </html>
