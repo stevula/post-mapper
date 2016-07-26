@@ -1,12 +1,12 @@
 class FriendsController < ApplicationController
+  # TODO: handle errors
   def index
     user = current_user
     if user
-      pp friends = Facebook.get_friends(user)
-      p friend = friends[0]
       @latitude, @longitude = user.update_location
       posts = Facebook.get_posts(user)
       post_data = posts["data"]
+      # TODO: move this logic out of controller
       @posts_with_location = post_data.reduce({data: []}) do |posts, post| 
         if post["place"]
           location = post["place"]["location"]

@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  # TODO: better error handling
   def new
     @user = User.new
   end
