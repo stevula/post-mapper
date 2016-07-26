@@ -11,7 +11,7 @@ module Facebook
   def self.get_posts(user)
     fields = 'place,from,message,link'
     query = {query: 
-      {fields: fields, access_token: user.facebook_token, limit: 200}
+      {fields: fields, access_token: user.facebook_token, limit: 350}
     }
     self.get("/me/posts", query)
   end

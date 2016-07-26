@@ -1,8 +1,8 @@
 <div class="jumbotron">
 <% if current_user %>
+
   <!-- google maps -->
   <div id="map"></div>
-
   <script>
     function initMap() {
       // center on user location
@@ -19,9 +19,7 @@
       // make markers on map for each post
       posts.forEach(function(post) {
         var infoContent = '<div id="info-window">' +
-          post.author +
-          ' ' +
-          post.message +
+          [post.author, post.message, post.location_name, post.location_city].join('<br>') +
           '</div>';
         var infoWindow = new google.maps.InfoWindow({content: infoContent});
 
