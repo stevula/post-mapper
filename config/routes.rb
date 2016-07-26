@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'friends#index'
+  root 'posts#index'
 
   get '/auth/:provider/callback' => 'sessions#create'
   delete '/logout' => 'sessions#destroy'

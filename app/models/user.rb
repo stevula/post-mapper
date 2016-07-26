@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  validates :name, length: {minimum: 1}, presence: true
+  validates :facebook_id, numericality: true, presence: true
+
   class << self
     def from_omniauth(auth_hash)
       user = find_or_create_by(facebook_id: auth_hash['uid'])
@@ -15,8 +18,6 @@ class User < ApplicationRecord
     location_data = Facebook.get_location(self)
     location = location_data['location']['name']
     geodata = Geokit::Geocoders::MultiGeocoder.geocode(location)
-    self.attributes = {latitude: @latitude, longitude: @longitude}
-    self.save!
     return geodata.lat, geodata.lng
   end
 end

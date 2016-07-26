@@ -1,12 +1,9 @@
 class SessionsController < ApplicationController
-  def new
-    @user = User.new
-  end
-
+  # TODO: better error messages
   def create
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
-      session[:user_id] = @user.id
+      login(@user)
       flash[:success] = "Welcome, #{@user.name}!"
     rescue
       flash[:warning] = "There was an error while trying to authenticate your 
@@ -17,7 +14,7 @@ class SessionsController < ApplicationController
 
   def destroy
     if current_user
-      session[:user_id] = nil
+      logout
       flash[:success] = "Logout successful"
     end
     redirect_to root_path
