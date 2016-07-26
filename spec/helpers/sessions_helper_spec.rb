@@ -28,7 +28,7 @@ RSpec.describe SessionsHelper, type: :helper do
   end
 
   describe '#login' do
-    it 'stores the user in the session hash, making the current user' do
+    it 'stores the user in the session hash, making it the current user' do
       current = user
       helper.login(current)
       expect(helper.current_user.id).to be current.id

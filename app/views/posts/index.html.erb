@@ -1,12 +1,11 @@
 <div class="jumbotron">
 <% if current_user %>
-  <h1>Your posts mapped:</h1>
-
   <!-- google maps -->
-  <!-- TODO: move this out of template -->
   <div id="map"></div>
+
   <script>
     function initMap() {
+      // center on user location
       var userLocation = {lat: <%= @latitude %>, lng: <%= @longitude %>}
 
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -14,8 +13,10 @@
         zoom: 10
       });
 
+      // posts filtered to those with location data
       var posts = <%= raw @posts_with_location.to_json %>['data'];
 
+      // make markers on map for each post
       posts.forEach(function(post) {
         var infoContent = '<div id="info-window">' +
           post.author +
@@ -30,6 +31,8 @@
           position: {lat: lat, lng: lng},
           map: map
         });
+
+        // mouseover / mouseout
         marker.addListener('mouseover', function() {
           infoWindow.open(map, marker);
         });
