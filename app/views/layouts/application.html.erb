@@ -28,10 +28,9 @@
 
   <nav class="navbar navbar-inverse">
     <div class="container">
-      <div class="navbar-header">
-        <%= link_to 'PostMapper', root_path, class: 'navbar-brand' %>
-      </div>
       <div id="navbar">
+        <%= link_to 'PostMapper', root_path, class: 'navbar-brand' %>
+        
         <% if current_user %>
           <ul class="nav navbar-nav pull-right">
             <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
@@ -52,12 +51,18 @@
       </div>
     <% end %>
 
-    <%= yield %>
+    <div class="row">
+
+      <%= yield %>
+
+    </div>
   </div>
 
   <footer class="footer">
-    <!-- facebook like and share buttons -->
-    <div class="fb-like" data-href="http://post-mapper.herokuapp.com" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    <div class="container">
+      <!-- facebook like and share buttons -->
+      <div class="fb-like" data-href="http://post-mapper.herokuapp.com" data-layout="standard" data-action="like" data-size="small" data-show-faces="true" data-share="true"></div>
+    </div>
   </footer>
 </body>
 </html>
