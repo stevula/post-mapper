@@ -1,9 +1,5 @@
 class SessionsController < ApplicationController
   # TODO: better error messages
-  def new
-    @user = User.new
-  end
-
   def create
     begin
       @user = User.from_omniauth(request.env['omniauth.auth'])
