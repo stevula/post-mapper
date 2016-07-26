@@ -1,4 +1,4 @@
-class FriendsController < ApplicationController
+class PostsController < ApplicationController
   # TODO: handle errors
   def index
     user = current_user

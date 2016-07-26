@@ -1,10 +1,8 @@
 # PostMapper
 When you log in through Facebook, PostMapper fetches your post history from Facebook and maps the locations of those posts using geodata. Obviously, it will
 only map those posts that had location data enabled. It uses the Facebook Graph
-API and Google Maps JavaScript API to accomplish this. 
-
-Only name, Facebook ID, and latitude/longitude of city are stored in the 
-database (I don't retain any post data).
+API and Google Maps JavaScript API to accomplish this. Only name and Facebook ID
+are stored in the database (I don't retain any post data).
 
 ## Key Dependencies
 * Rails 5.0.0

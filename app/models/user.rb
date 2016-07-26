@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  validates :name, presence: true
+  validates :name, length: {minimum: 1}, presence: true
+  validates :facebook_id, numericality: true, presence: true
 
   class << self
     def from_omniauth(auth_hash)
