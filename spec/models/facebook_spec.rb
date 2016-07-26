@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Facebook, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  # not sure how to test these with access tokens
+  describe '::get_location' do
+  end
+
+  describe '::get_posts' do
+  end
 end

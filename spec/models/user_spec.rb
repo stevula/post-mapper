@@ -56,4 +56,8 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe '#update_location' do
+    # not sure how to test this as it requires a valid access_token
+  end
 end

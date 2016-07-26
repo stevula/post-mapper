@@ -8,11 +8,6 @@ module Facebook
     self.get("/me", query)
   end
 
-  def self.get_friends(user, friends_of="me")
-    query = {query: {access_token: user.facebook_token, limit: 20}}
-    self.get("/#{friends_of}/friends", query)
-  end
-
   def self.get_posts(user)
     fields = 'place,from,message,link'
     query = {query: 
