@@ -17,28 +17,48 @@
       var posts = <%= raw @posts_with_location.to_json %>['data'];
 
       // make markers on map for each post
-      posts.forEach(function(post) {
-        var infoContent = '<div id="info-window">' +
-          [post.author, post.message, post.location_name, post.location_city].join('<br>') +
-          '</div>';
-        var infoWindow = new google.maps.InfoWindow({content: infoContent});
+      const mapPosts = function(posts, map) {
+        posts.forEach(function(post) {
+          // build HTML for info-window hoverbox
+          let infoWindowHTML = createInfoWindowElement(
+            [post.author, post.message, post.location_name, post.location_city]
+          );
+          let infoWindow = new google.maps.InfoWindow({content: infoWindowHTML});
+          let marker = addMarkerToMap(map, post.coords);
+          addMarkerListeners(map, marker, infoWindow);
+        });
+      };
 
-        var lat = post.coords[0],
-            lng = post.coords[1];
-        var marker = new google.maps.Marker({
-          position: {lat: lat, lng: lng},
+      // converts contents array into div with each content separated by a <br>
+      const createInfoWindowElement = function(contents) {
+        const infoWindow = document.createElement('div');
+        infoWindow.className = "info-window";
+        infoWindow.innerHTML = contents.join('<br>');
+        return infoWindow;
+      };
+
+      // adds marker to map which can receive event listener for displaying info window
+      // coords should be 2-element array [lat, lng].
+      const addMarkerToMap = function(map, coords) {
+        let marker = new google.maps.Marker({
+          position: {lat: coords[0], lng: coords[1]},
           map: map
         });
+        return marker;
+      };
 
-        // mouseover / mouseout
-        marker.addListener('mouseover', function() {
+      // changes the default behavior of infoWindow opening/closing on click
+      const addMarkerHoverListeners = function(map, marker, infoWindow) {
+        marker.addListener('mousover', function() {
           infoWindow.open(map, marker);
         });
         marker.addListener('mouseout', function() {
           infoWindow.close();
         });
-      });
+      };
     }
+
+    mapPosts(posts, map);
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['google_api_key'] %>&callback=initMap"></script>
 
