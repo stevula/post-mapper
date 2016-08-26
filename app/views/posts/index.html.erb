@@ -6,9 +6,9 @@
   <script>
     function initMap() {
       // center on user location
-      var userLocation = {lat: <%= @latitude %>, lng: <%= @longitude %>}
+      const userLocation = {lat: <%= @latitude %>, lng: <%= @longitude %>}
 
-      var map = new google.maps.Map(document.getElementById('map'), {
+      const map = new google.maps.Map(document.getElementById('map'), {
         center: userLocation,
         zoom: 10
       });
@@ -20,11 +20,11 @@
       const mapPosts = function(posts, map) {
         posts.forEach(function(post) {
           // build HTML for info-window hoverbox
-          let infoWindowHTML = createInfoWindowElement(
+          const infoWindowHTML = createInfoWindowElement(
             [post.author, post.message, post.location_name, post.location_city]
           );
-          let infoWindow = new google.maps.InfoWindow({content: infoWindowHTML});
-          let marker = addMarkerToMap(map, post.coords);
+          const infoWindow = new google.maps.InfoWindow({content: infoWindowHTML});
+          const marker = addMarkerToMap(map, post.coords);
           addMarkerListeners(map, marker, infoWindow);
         });
       };
@@ -37,10 +37,9 @@
         return infoWindow;
       };
 
-      // adds marker to map which can receive event listener for displaying info window
       // coords should be 2-element array [lat, lng].
       const addMarkerToMap = function(map, coords) {
-        let marker = new google.maps.Marker({
+        const marker = new google.maps.Marker({
           position: {lat: coords[0], lng: coords[1]},
           map: map
         });
